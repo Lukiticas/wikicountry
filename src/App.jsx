@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header.component";
-import CountriesList from "./pages/CountriesList/CountriesList.page";
 import { useEffect, useState } from "react";
-import CountryMainPage from "./pages/CountryMainPage/CountryMainPage.page";
 import { ThemeProvider } from "styled-components";
 import dark from "./styles/themes/dark.js";
 import light from "./styles/themes/light.js";
 import usePersistedState from "./utils/UsePersistedState";
 import { GlobalStyle } from "./styles/global.styles";
+import CountriesList from "./pages/CountriesList/CountriesList.page";
+import CountryInfo from "./pages/CountryInfo/CountryInfo.page";
+import Header from "./components/Header/Header.component";
 
 const App = () => {
   const [theme, setTheme] = usePersistedState("theme", light);
@@ -44,7 +44,11 @@ const App = () => {
               }
             />
           )}
-          <Route path="/country/:code" element={<CountryMainPage />} />
+          <Route
+            exact
+            path="/:code"
+            element={<CountryInfo list={countriesList} />}
+          />
         </Route>
       </Routes>
     </ThemeProvider>

@@ -12,10 +12,14 @@ const HeaderBody = styled.header`
 
   background-color: ${(props) => props.theme.colors.bgSecundary};
   color: ${(props) => props.theme.colors.wordPrimary};
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 `;
 
 const HeaderTitle = styled.h1`
   font-size: 1.5rem;
+  color: ${(props) => props.theme.colors.wordPrimary};
 `;
 
 const HeaderToggle = styled.button`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const NavBody = styled.div`
   width: 100%;
   display: flex;
-
+  position: relative;
   padding: 0 1rem;
   align-items: center;
   justify-content: space-between;
@@ -53,11 +53,12 @@ const NavSearch = styled.div`
 
 const NavSelect = styled.select`
   cursor: pointer;
+  appearance: none;
   font-size: 1rem;
   width: 12rem;
   height: 3rem;
   border-radius: 0.2rem;
-  padding: 0 1rem;
+  padding: 1rem;
   background-color: ${(props) => props.theme.colors.bgSecundary};
   border: none;
   color: ${(props) => props.theme.colors.wordPrimary};
@@ -86,4 +87,13 @@ const NavInput = styled.input`
   }
 `;
 
-export { NavBody, NavSearch, NavSelect, NavInput };
+const NavSelectWrapper = styled.div`
+  position: relative;
+  & svg {
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+  }
+`;
+
+export { NavBody, NavSearch, NavSelect, NavInput, NavSelectWrapper };

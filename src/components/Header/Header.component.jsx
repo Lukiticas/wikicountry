@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { HeaderBody, HeaderTitle, HeaderToggle } from "./header.styles";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
@@ -10,7 +10,9 @@ const Header = ({ themeHandler }) => {
   return (
     <>
       <HeaderBody>
-        <HeaderTitle>Where in the world?</HeaderTitle>
+        <Link to="/">
+          <HeaderTitle>Where in the world?</HeaderTitle>
+        </Link>
         <HeaderToggle onClick={themeHandler}>
           <Moon size={24} weight={title === "dark" ? "light" : "fill"} />
           <p>Dark Mode</p>

@@ -1,13 +1,21 @@
-import { NavBody, NavSearch, NavSelect, NavInput } from "./SearchNav.styles";
-import { MagnifyingGlass } from "phosphor-react";
+import {
+  NavBody,
+  NavSearch,
+  NavSelect,
+  NavInput,
+  NavSelectWrapper,
+} from "./SearchNav.styles";
+import { MagnifyingGlass, CaretUp, CaretDown } from "phosphor-react";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-const SearchNav = ({ list, setChangedList, changedList }) => {
+const SearchNav = ({ list, setChangedList }) => {
   const [regionSelected, setRegionSelected] = useState("");
   const [countrySelected, setCountrySelected] = useState("");
-  const { colors, title } = useContext(ThemeContext);
+  const [isOpen, setIsOpen] = useState(false);
+  const { colors } = useContext(ThemeContext);
+
   const handleSelected = (evt) => {
     setRegionSelected(evt.target.value);
   };
@@ -41,20 +49,33 @@ const SearchNav = ({ list, setChangedList, changedList }) => {
           value={countrySelected}
           onChange={(evt) => setCountrySelected(evt.target.value)}
           placeholder="Search for a country..."
+          autoComplete="off"
         />
       </NavSearch>
 
-      <NavSelect defaultValue={regionSelected} onChange={handleSelected}>
-        <option disabled hidden value="">
-          Filter by Region
-        </option>
-        <option value="Africa">África</option>
-        <option value="Americas">America</option>
-        <option value="Asia">Ásia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
-        <option value="none">Show All</option>
-      </NavSelect>
+      <NavSelectWrapper>
+        <NavSelect
+          defaultValue={regionSelected}
+          onClick={() => setIsOpen((ol) => !ol)}
+          onBlur={() => setIsOpen((ol) => !ol)}
+          onChange={handleSelected}
+        >
+          <option disabled hidden value="">
+            Filter by Region
+          </option>
+          <option value="Africa">África</option>
+          <option value="Americas">America</option>
+          <option value="Asia">Ásia</option>
+          <option value="Europe">Europe</option>
+          <option value="Oceania">Oceania</option>
+          <option value="none">Show All</option>
+        </NavSelect>
+        {isOpen ? (
+          <CaretDown color={colors.wordPrimary} size={16} weight="bold" />
+        ) : (
+          <CaretUp color={colors.wordPrimary} size={16} weight="bold" />
+        )}
+      </NavSelectWrapper>
     </NavBody>
   );
 };

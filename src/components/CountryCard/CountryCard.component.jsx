@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
+import formatNumber from "../../utils/formatNumber";
+import ListItem from "../ListItem/ListItem.component";
 import { CardBody, CardDetails, CardImage } from "./CountryCard.styles";
 
 const CountryCard = (props) => {
-  function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-  }
-
   const {
     name,
     population,
@@ -16,23 +14,16 @@ const CountryCard = (props) => {
   } = props.country;
 
   return (
-    <Link to={`/country/${alpha3Code}`}>
+    <Link to={`/${alpha3Code}`}>
       <CardBody>
         <div>
           <CardImage loading="lazy" src={flags.png} alt={`${name} flag`} />
         </div>
         <CardDetails>
           <h2>{name}</h2>
-          <p>
-            Population:
-            <span>{formatNumber(population)}</span>
-          </p>
-          <p>
-            Region: <span>{region}</span>
-          </p>
-          <p>
-            Capital: <span>{capital}</span>
-          </p>
+          <ListItem title="Population" subtitle={formatNumber(population)} />
+          <ListItem title="Region" subtitle={region} />
+          <ListItem title="Capital" subtitle={capital} />
         </CardDetails>
       </CardBody>
     </Link>

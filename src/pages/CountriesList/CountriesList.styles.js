@@ -8,7 +8,7 @@ const CLMain = styled.main`
   }
 `;
 
-const CLSection = styled.section`
+const CLSection = styled.div`
   flex-flow: row wrap;
   justify-content: center;
   display: flex;
