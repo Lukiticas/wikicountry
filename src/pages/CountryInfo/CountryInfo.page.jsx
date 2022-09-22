@@ -75,14 +75,14 @@ const CountryInfo = ({ list }) => {
   }, [country, list]);
 
   useEffect(() => {
-    const getNewsAPI = async (target, pgSize) => {
-      const API_URL = `https://newsapi.org/v2/everything?q=${target}&apiKey=${API_KEY}&pageSize=${pgSize}`;
+    const getNewsAPI = async (target) => {
+      const API_URL = `https://gnews.io/api/v4/search?q=${target}&token=${API_KEY}`;
       const data = await fetch(API_URL);
       const dataJson = await data.json();
       setNews(dataJson.articles);
     };
 
-    country && getNewsAPI(country.name, 10);
+    country && getNewsAPI(country.name);
   }, [memoEnteredView]);
 
   const borderList = country

@@ -8,12 +8,12 @@ import {
 } from "./NewsCard.styles";
 
 const NewsCard = ({ data }) => {
-  const { source, title, content, url, urlToImage, publishedAt } = data;
+  const { source, title, content, url, image, publishedAt } = data;
 
   return (
     <CardArticle>
       <CardWrapper>
-        <CardImage loading="lazy" src={urlToImage} alt={title} />
+        <CardImage loading="lazy" src={image} alt={title} />
       </CardWrapper>
       <CardLink href={url}>
         <CardSection>
