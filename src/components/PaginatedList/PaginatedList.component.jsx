@@ -3,10 +3,11 @@ import ReactPaginate from "react-paginate";
 import CountryCard from "../CountryCard/CountryCard.component";
 import PLFragment from "./PaginatedList.styles";
 
-const PaginatedList = ({ itemsPerPage, items, Wrapper }) => {
+const PaginatedList = ({ itemsPerPage, items, Wrapper, reactTo }) => {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
+  const [page, setPage] = useState();
 
   const countryCards = currentItems.map((el, index) => {
     return <CountryCard offSetAnimation={index} key={el.name} country={el} />;
@@ -14,22 +15,27 @@ const PaginatedList = ({ itemsPerPage, items, Wrapper }) => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-
     setCurrentItems(items.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(items.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, items]);
+  }, [itemOffset, itemsPerPage, items, reactTo]);
 
   const handlePageClick = (event) => {
+    setPage(event.selected);
     const newOffset = (event.selected * itemsPerPage) % items.length;
     setItemOffset(newOffset);
   };
+
+  useEffect(() => {
+    setPage(0);
+    const newOffset = (0 * itemsPerPage) % items.length;
+    setItemOffset(newOffset);
+  }, [reactTo]);
 
   return (
     <PLFragment>
       <Wrapper>{countryCards}</Wrapper>
       <ReactPaginate
         breakLabel="..."
-        onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
         previousLabel="<"
@@ -41,6 +47,8 @@ const PaginatedList = ({ itemsPerPage, items, Wrapper }) => {
         activeLinkClassName="pag__pag-active--link"
         previousClassName="pag__previous-button"
         nextClassName="pag__next-button"
+        forcePage={page}
+        onPageChange={handlePageClick}
       />
     </PLFragment>
   );

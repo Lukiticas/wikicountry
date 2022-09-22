@@ -12,13 +12,14 @@ import {
   NavSelectWrapper,
 } from "./SearchNav.styles";
 
-const SearchNav = ({ list, setChangedList }) => {
+const SearchNav = ({ list, setChangedList, onSelect }) => {
   const { colors } = useContext(ThemeContext);
   const [regionSelected, setRegionSelected] = useState("");
   const [countrySelected, setCountrySelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelected = (evt) => {
+    onSelect((ol) => !ol);
     setRegionSelected(evt.target.value);
   };
 
@@ -36,7 +37,10 @@ const SearchNav = ({ list, setChangedList }) => {
         <MagnifyingGlass size={24} color={colors.wordPrimary} />
         <NavInput
           value={countrySelected}
-          onChange={(evt) => setCountrySelected(evt.target.value)}
+          onChange={(evt) => {
+            onSelect((ol) => !ol);
+            setCountrySelected(evt.target.value);
+          }}
           placeholder="Search for a country..."
           autoComplete="off"
         />
@@ -45,7 +49,9 @@ const SearchNav = ({ list, setChangedList }) => {
       <NavSelectWrapper>
         <NavSelect
           defaultValue={regionSelected}
-          onClick={() => setIsOpen((ol) => !ol)}
+          onClick={() => {
+            setIsOpen((ol) => !ol);
+          }}
           onBlur={() => setIsOpen((ol) => !ol)}
           onChange={handleSelected}
         >
