@@ -21,7 +21,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](https://github.com/Lukiticas/country-list/blob/master/design/desktop-preview.jpg)
 
 ### Links
 
