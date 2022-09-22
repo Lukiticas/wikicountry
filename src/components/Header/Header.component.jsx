@@ -15,7 +15,7 @@ const Header = ({ themeHandler }) => {
         </Link>
         <HeaderToggle onClick={themeHandler}>
           <Moon size={24} weight={title === "dark" ? "light" : "fill"} />
-          <p>Dark Mode</p>
+          Dark Mode
         </HeaderToggle>
       </HeaderBody>
       <Outlet />

@@ -54,6 +54,7 @@ const SearchNav = ({ list, setChangedList, onSelect }) => {
           }}
           onBlur={() => setIsOpen((ol) => !ol)}
           onChange={handleSelected}
+          name="region"
         >
           <option disabled hidden value="">
             Filter by Region

@@ -20,7 +20,7 @@ const CountryCard = (props) => {
           <CardImage loading="lazy" src={flags.png} alt={`${name} flag`} />
         </div>
         <CardDetails>
-          <h3>{name}</h3>
+          <h2>{name}</h2>
           <SimpleDescription
             title="Population"
             subtitle={formatNumber(population)}
