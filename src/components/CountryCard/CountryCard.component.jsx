@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import formatNumber from "../../utils/formatNumber";
-import ListItem from "../ListItem/ListItem.component";
+import SimpleDescription from "../SimpleDescription/SimpleDescription.component";
 import { CardBody, CardDetails, CardImage } from "./CountryCard.styles";
 
 const CountryCard = (props) => {
@@ -15,15 +15,21 @@ const CountryCard = (props) => {
 
   return (
     <Link to={`/${alpha3Code}`}>
-      <CardBody>
+      <CardBody offSet={props.offSetAnimation}>
         <div>
           <CardImage loading="lazy" src={flags.png} alt={`${name} flag`} />
         </div>
         <CardDetails>
-          <h2>{name}</h2>
-          <ListItem title="Population" subtitle={formatNumber(population)} />
-          <ListItem title="Region" subtitle={region} />
-          <ListItem title="Capital" subtitle={capital} />
+          <h3>{name}</h3>
+          <SimpleDescription
+            title="Population"
+            subtitle={formatNumber(population)}
+          />
+          <SimpleDescription title="Region" subtitle={region} />
+          <SimpleDescription
+            title="Capital"
+            subtitle={capital ? capital : "none"}
+          />
         </CardDetails>
       </CardBody>
     </Link>

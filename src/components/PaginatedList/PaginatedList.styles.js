@@ -8,23 +8,29 @@ const PLFragment = styled.section`
     align-items: center;
     gap: 0.5rem;
     color: ${(props) => props.theme.colors.wordPrimary};
-    margin-top: 2rem;
+    margin-block: 5rem;
 
     &__page {
-      display: grid;
-      transition: filter 100ms ease-in;
-      place-items: center;
       border-radius: 0.5rem;
       height: 2.5rem;
       width: 2.5rem;
       cursor: pointer;
       outline: 0.1rem solid ${(props) => props.theme.colors.wordPrimary};
       background-color: ${(props) => props.theme.colors.bgPrimary};
+      transition: filter 100ms ease-in;
 
       &:hover,
       &:focus-visible {
         filter: brightness(0.5);
       }
+    }
+
+    &__link {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
     }
 
     &__pag-active {

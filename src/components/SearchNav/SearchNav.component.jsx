@@ -1,3 +1,9 @@
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "styled-components";
+import { changeBasedOnRegion, changeBaseOnSearch } from "../../utils";
+
+import { MagnifyingGlass, CaretUp, CaretDown } from "phosphor-react";
+
 import {
   NavBody,
   NavSearch,
@@ -5,40 +11,23 @@ import {
   NavInput,
   NavSelectWrapper,
 } from "./SearchNav.styles";
-import { MagnifyingGlass, CaretUp, CaretDown } from "phosphor-react";
-import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { ThemeContext } from "styled-components";
 
 const SearchNav = ({ list, setChangedList }) => {
+  const { colors } = useContext(ThemeContext);
   const [regionSelected, setRegionSelected] = useState("");
   const [countrySelected, setCountrySelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const { colors } = useContext(ThemeContext);
 
   const handleSelected = (evt) => {
     setRegionSelected(evt.target.value);
   };
 
-  const changeBasedOnRegion = (list, region) => {
-    const newList = list.filter((el) => el.region === region);
-    setChangedList(regionSelected === "none" ? [] : newList);
-  };
-
-  const changeBaseOnSearch = (list, words) => {
-    const newList = list.filter((el) => {
-      const treated = Object.entries(el.translations);
-      return treated.some((el) => el[1].includes(words));
-    });
-    setChangedList(newList);
-  };
-
   useEffect(() => {
-    changeBasedOnRegion(list, regionSelected);
+    changeBasedOnRegion(list, regionSelected, setChangedList);
   }, [regionSelected]);
 
   useEffect(() => {
-    changeBaseOnSearch(list, countrySelected);
+    changeBaseOnSearch(list, countrySelected, setChangedList);
   }, [countrySelected]);
 
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const LoadingPage = styled.main`
+const LoadingPageMain = styled.main`
   display: grid;
   place-items: center;
   min-height: calc(100vh - 72px);
@@ -9,7 +9,7 @@ const LoadingPage = styled.main`
   color: ${(props) => props.theme.colors.wordPrimary};
 `;
 
-const LoadingIcon = styled.section`
+const LoadingIconSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,27 +20,30 @@ const LoadingIcon = styled.section`
 const NavBody = styled.nav`
   display: flex;
   align-items: center;
-  min-height: 8rem;
+  margin: 4rem auto;
+
+  @media screen and (max-width: 1200px) {
+    max-width: 36rem;
+  }
 `;
 
-const CIFlag = styled.img`
-  max-width: clamp(30rem, 100%, 35rem);
+const CIFlagImage = styled.img`
+  max-width: clamp(27rem, 100%, 35rem);
+  border-radius: 0.2rem;
 `;
 
-const CIBody = styled.main`
-  max-width: 100vw;
-  min-height: calc(100vh - 170px);
-  margin: 0 2.5rem;
+const CIMain = styled.main`
+  max-width: 110rem;
+  margin: 0 auto;
+  padding-inline: 2rem;
 
   .img-ctn {
     max-width: 100%;
     display: grid;
     place-items: center;
-    margin-right: 1rem;
 
     @media screen and (max-width: 1200px) {
       margin-bottom: 2rem;
-      margin-right: 0;
     }
   }
 
@@ -49,41 +52,22 @@ const CIBody = styled.main`
   }
 `;
 
-const CIMain = styled.section`
+const CIMainSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 6rem;
   color: ${(props) => props.theme.colors.wordPrimary};
 
   @media screen and (max-width: 1200px) {
-    margin: 0 auto;
+    margin: 6rem auto;
     max-width: 36rem;
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
-    place-items: center;
-  }
-
-  @media screen and (max-width: 800px) {
-    font-size: 0.8rem;
-    min-height: calc(100vh - 170px);
-  }
-
-  .border-countries {
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
-    gap: 0.5rem;
-
-    @media screen and (max-width: 1200px) {
-      & > p {
-        width: 100%;
-        margin-bottom: 0.5rem;
-      }
-    }
   }
 `;
 
 const CISection = styled.section`
-  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,33 +75,8 @@ const CISection = styled.section`
 
   & > h2 {
     margin-bottom: 2rem;
-    text-align: left;
     font-weight: 600;
     font-size: 2.3rem;
-  }
-
-  .info-section {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-bottom: 2rem;
-
-    & > *:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-
-    & > .item-wrapper {
-      & > * {
-        margin-bottom: 1rem;
-      }
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    & > .info-section {
-      grid-template-columns: 1fr;
-    }
-    height: 100%;
   }
 
   @media screen and (max-width: 1200px) {
@@ -125,7 +84,41 @@ const CISection = styled.section`
   }
 `;
 
-const BCCard = styled(Link)`
+const InfoSection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 2rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InfoItemDivider = styled.div`
+  & > * {
+    margin-bottom: 1rem;
+  }
+`;
+
+const InfoBorderBody = styled.div`
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 1200px) {
+    & > p {
+      width: 100%;
+      margin-bottom: 0.2rem;
+    }
+  }
+`;
+
+const BBLink = styled(Link)`
   outline: none;
   border: none;
   animation: filter 100ms ease-in;
@@ -145,13 +138,69 @@ const BCCard = styled(Link)`
   }
 `;
 
+const MapSection = styled.section`
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-bottom: 5em;
+  .country-map {
+    height: 30rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+`;
+
+const NewSection = styled.section`
+  color: ${(props) => props.theme.colors.wordPrimary};
+  max-width: 110rem;
+  margin: 0 auto;
+  h2 {
+    position: relative;
+    margin-bottom: 5rem;
+    font-weight: 600;
+    font-size: 2.3rem;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: calc(100% - 15rem);
+
+      height: 0.1rem;
+      background-color: ${(props) => props.theme.colors.wordPrimary};
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+  }
+`;
+
+const NewsDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+
+  @media screen and (max-width: 800px) {
+    font-size: 1rem;
+  }
+`;
+
 export {
-  LoadingPage,
-  LoadingIcon,
+  NewsDiv,
+  NewSection,
+  MapSection,
+  LoadingPageMain,
+  LoadingIconSection,
   NavBody,
-  BCCard,
-  CIBody,
+  BBLink,
   CIMain,
-  CIFlag,
+  CIMainSection,
+  CIFlagImage,
   CISection,
+  InfoBorderBody,
+  InfoItemDivider,
+  InfoSection,
 };

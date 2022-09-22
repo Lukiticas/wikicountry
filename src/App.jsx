@@ -1,10 +1,13 @@
-import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+
+import { GlobalStyle } from "./styles/global.styles";
 import dark from "./styles/themes/dark.js";
 import light from "./styles/themes/light.js";
+
 import usePersistedState from "./utils/UsePersistedState";
-import { GlobalStyle } from "./styles/global.styles";
+
 import CountriesList from "./pages/CountriesList/CountriesList.page";
 import CountryInfo from "./pages/CountryInfo/CountryInfo.page";
 import Header from "./components/Header/Header.component";

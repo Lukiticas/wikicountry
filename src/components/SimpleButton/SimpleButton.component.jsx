@@ -1,9 +1,9 @@
 import { ArrowLeft } from "phosphor-react";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
-import { ButtonBody } from "./NavButton.styles";
+import { ButtonBody } from "./SimpleButton.styles";
 
-const NavButton = ({ title, toDo, ...args }) => {
+const SimpleButton = ({ title, toDo, ...args }) => {
   const { colors } = useContext(ThemeContext);
   return (
     <ButtonBody onClick={() => toDo()} {...args}>
@@ -13,4 +13,4 @@ const NavButton = ({ title, toDo, ...args }) => {
   );
 };
 
-export default NavButton;
+export default SimpleButton;

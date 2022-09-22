@@ -39,6 +39,10 @@ const HeaderToggle = styled.button`
   :hover {
     filter: contrast(0.5);
   }
+
+  svg {
+    width: 1.4rem;
+  }
 `;
 
 export { HeaderBody, HeaderTitle, HeaderToggle };

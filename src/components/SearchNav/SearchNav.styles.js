@@ -49,6 +49,10 @@ const NavSearch = styled.div`
       width: 100%;
     }
   }
+
+  svg {
+    width: 1.3rem;
+  }
 `;
 
 const NavSelect = styled.select`
@@ -79,6 +83,7 @@ const NavInput = styled.input`
   outline: none;
   flex: 1;
   height: 100%;
+  font-size: 1rem;
   background-color: transparent;
   color: ${(props) => props.theme.colors.wordPrimary};
   ::placeholder {

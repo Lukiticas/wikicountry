@@ -8,8 +8,8 @@ const PaginatedList = ({ itemsPerPage, items, Wrapper }) => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
-  const countryCards = currentItems.map((el) => {
-    return <CountryCard key={el.name} country={el} />;
+  const countryCards = currentItems.map((el, index) => {
+    return <CountryCard offSetAnimation={index} key={el.name} country={el} />;
   });
 
   useEffect(() => {

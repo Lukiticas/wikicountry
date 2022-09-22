@@ -2,8 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     :root {
+        --map-tiles-filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+
         @media screen and (max-width: 600px) {
-            font-size: 3vw;    
+            font-size: 3.2vw;    
         }
     }
 
@@ -11,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${(props) => props.theme.colors.bgPrimary};   
     }
     
-
     * {
         box-sizing: border-box;
         margin: 0;
@@ -25,14 +26,14 @@ const GlobalStyle = createGlobalStyle`
 
     }
 
-    .MuiAutocomplete-root {
-        border: none;
-        outline: none;
-    };
+    .map-tiles {
+        filter: ${(props) =>
+          props.theme.title === "dark"
+            ? "var(--map-tiles-filter, none)"
+            : "none"} ;
+}
 
-    .MuiTextField-root {
-        color: red;
-    }
+
 `;
 
 export { GlobalStyle };
